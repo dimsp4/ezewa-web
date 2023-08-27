@@ -22,6 +22,11 @@ export class HomeComponent {
   scrolled = false;
   search = false;
 
+  dhimas = 'dhimas'
+  fredy = 'fredy'
+  ibnu = 'ibnu'
+  hafidz = 'hafidz'
+
   @HostListener('document:scroll')
   scrollFunction() {
     if (

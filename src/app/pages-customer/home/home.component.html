@@ -20,11 +20,14 @@
         <mat-menu #profilemenu="matMenu" class="topbar-dd cardWithShadow mt-2">
           <button mat-menu-item>
             <mat-icon class="d-flex align-items-center"
-              ><i-tabler
+            >
+              <i-tabler
                 name="user"
                 class="icon-18 d-flex"
-              ></i-tabler></mat-icon
-            >My Profile
+              ></i-tabler>
+            </mat-icon
+            >
+            My Profile
           </button>
 
           <div class="p-x-12 m-t-12">
@@ -33,7 +36,7 @@
               mat-stroked-button
               color="dark"
               class="w-100"
-              >Logout</a
+            >Logout</a
             >
           </div>
         </mat-menu>
@@ -76,11 +79,14 @@
           >
             <button mat-menu-item>
               <mat-icon class="d-flex align-items-center"
-                ><i-tabler
+              >
+                <i-tabler
                   name="user"
                   class="icon-18 d-flex"
-                ></i-tabler></mat-icon
-              >My Profile
+                ></i-tabler>
+              </mat-icon
+              >
+              My Profile
             </button>
 
             <div class="p-x-12 m-t-12">
@@ -89,7 +95,7 @@
                 mat-stroked-button
                 color="dark"
                 class="w-100"
-                >Logout</a
+              >Logout</a
               >
             </div>
           </mat-menu>
@@ -104,7 +110,7 @@
     ></h1>
     <div class="col-7 ms-3">
       <h4 class="text-start mb-4" style="font-weight: 600; font-size: 2rem">
-        Find your next building to rent <br />
+        Find your next building to rent <br/>
         with amazing price
       </h4>
       <form [formGroup]="formGroup" (ngSubmit)="searchButton(formGroup.value)" class="d-flex" role="search">
@@ -172,16 +178,88 @@
   <div class="col-12 text-center mb-3">
     <p class="fs-3 fw-semibold">Keluarga Cemara's Expert Teams</p>
   </div>
+
   <div class="col-3">
-    <p class="text-center">Member</p>
+    <p class="text-center">Dhimas Pamungkas Setiabudi</p>
+
+    <div class="text-center">
+      <button class="btn btn-outline-dark px-5" data-bs-toggle="modal" data-bs-target="#profileModalDhimas">Show more
+      </button>
+    </div>
+
+    <div id="profileModalDhimas" class="modal fade" role="dialog">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-body">
+
+            <app-profile-info [inputName]="dhimas"></app-profile-info>
+
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
+
   <div class="col-3">
-    <p class="text-center">Member</p>
+    <p class="text-center">Fredy Mordechai Marpaung</p>
+
+    <div class="text-center">
+      <button class="btn btn-outline-dark px-5" data-bs-toggle="modal" data-bs-target="#profileModalFredy">Show more
+      </button>
+    </div>
+
+    <div id="profileModalFredy" class="modal fade" role="dialog">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-body">
+
+            <app-profile-info [inputName]="fredy"></app-profile-info>
+
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
+
   <div class="col-3">
-    <p class="text-center">Member</p>
+    <p class="text-center">Muhammad Ibnu Al Yazzar</p>
+
+    <div class="text-center">
+      <button class="btn btn-outline-dark px-5" data-bs-toggle="modal" data-bs-target="#profileModalIbnu">Show more
+      </button>
+    </div>
+
+    <div id="profileModalIbnu" class="modal fade" role="dialog">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-body">
+
+            <app-profile-info [inputName]="ibnu"></app-profile-info>
+
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
+
   <div class="col-3">
-    <p class="text-center">Member</p>
+    <p class="text-center">Vhierdy Hafidz</p>
+
+    <div class="text-center">
+      <button class="btn btn-outline-dark px-5" data-bs-toggle="modal" data-bs-target="#profileModalHafidz">Show more
+      </button>
+    </div>
+
+    <div id="profileModalHafidz" class="modal fade" role="dialog">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-body">
+
+            <app-profile-info [inputName]="hafidz"></app-profile-info>
+
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

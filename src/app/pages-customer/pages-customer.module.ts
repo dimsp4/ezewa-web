@@ -11,6 +11,7 @@ import { BuildingComponent } from './building/building.component';
 import { AllComponent } from './building/all/all.component';
 import { DetailComponent } from './building/detail/detail.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {ProfileInfoComponent} from "../shared/components/profile-info/profile-info.component";
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CountUpDirective,
     BuildingComponent,
     AllComponent,
-    DetailComponent
+    DetailComponent,
+    ProfileInfoComponent
   ],
   imports: [
     CommonModule,

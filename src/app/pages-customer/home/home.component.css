@@ -1,0 +1,16 @@
+.bg-image {
+  background-image: url("src/assets/images/backgrounds/customer-bg.jpg");
+  background-size: cover;
+  background-position: center;
+  min-height: 100%;
+  overflow: hidden;
+}
+
+.content-1 {
+  color: white;
+}
+
+.title {
+  font-size: 8rem;
+  font-weight: 700;
+}

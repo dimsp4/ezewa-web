@@ -1,0 +1,30 @@
+<div class="app-container d-flex flex-column align-items-center justify-content-center" *ngIf="!loading; else loadingContent">
+    <br />
+    <h3 class="mb-3">Transaction List</h3>
+    <div class="table-wrapper w-100">
+      <mat-table [dataSource]="transactions" class="mat-elevation-z8">
+        <ng-container matColumnDef="customerId">
+          <mat-header-cell *matHeaderCellDef>Customer ID</mat-header-cell>
+          <mat-cell *matCellDef="let transaction">{{ transaction.customerId }}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="productDetails">
+          <mat-header-cell *matHeaderCellDef>Product Details</mat-header-cell>
+          <mat-cell *matCellDef="let transaction">
+            <div *ngFor="let detail of transaction.orderDetails">
+              Product Name: {{ detail.productResponse.productName }}
+            </div>
+          </mat-cell>
+        </ng-container>
+        <mat-header-row
+          *matHeaderRowDef="['customerId', 'productDetails']"
+        ></mat-header-row>
+        <mat-row
+          *matRowDef="let row; columns: ['customerId', 'productDetails']"
+        ></mat-row>
+      </mat-table>
+    </div>
+</div>
+<ng-template #loadingContent>
+    <app-loading-overlay [isLoading]="loading"></app-loading-overlay>
+  </ng-template>
+  

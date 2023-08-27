@@ -1,0 +1,39 @@
+<div
+  class="app-container d-flex flex-column align-items-center justify-content-center"
+  *ngIf="!loading; else loadingContent"
+>
+  <br />
+  <h3 class="mb-3">Store List</h3>
+  <div class="table-wrapper w-100">
+    <mat-table [dataSource]="stores" class="mat-elevation-z8">
+      <ng-container matColumnDef="storeId">
+        <mat-header-cell *matHeaderCellDef>No</mat-header-cell>
+        <mat-cell *matCellDef="let store; let i = index">{{ i + 1 }}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="storeName">
+        <mat-header-cell *matHeaderCellDef>Store Name</mat-header-cell>
+        <mat-cell *matCellDef="let store">{{ store.storeName }}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="address">
+        <mat-header-cell *matHeaderCellDef>Address</mat-header-cell>
+        <mat-cell *matCellDef="let store">{{ store.address }}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="mobilePhone">
+        <mat-header-cell *matHeaderCellDef>Mobile Phone</mat-header-cell>
+        <mat-cell *matCellDef="let store">{{ store.mobilePhone }}</mat-cell>
+      </ng-container>
+      <mat-header-row
+        *matHeaderRowDef="['storeId', 'storeName', 'address', 'mobilePhone']"
+      ></mat-header-row>
+      <mat-row
+        *matRowDef="
+          let row;
+          columns: ['storeId', 'storeName', 'address', 'mobilePhone']
+        "
+      ></mat-row>
+    </mat-table>
+  </div>
+</div>
+<ng-template #loadingContent>
+  <app-loading-overlay [isLoading]="loading"></app-loading-overlay>
+</ng-template>

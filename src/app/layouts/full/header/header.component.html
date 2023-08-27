@@ -1,0 +1,31 @@
+<mat-toolbar class="topbar">
+  <span class="flex-1-auto">
+    <!-- <span class="marquee" style="color: yellow;">NILAI SERATUS DONG KAK</span> -->
+  </span>
+  <button
+    mat-stroked-button
+    [matMenuTriggerFor]="profilemenu"
+    class="btn btn-outline-primary"
+    type="button"
+    aria-expanded="false"
+  >
+    Welcome User
+  </button>
+  <mat-menu #profilemenu="matMenu" class="topbar-dd cardWithShadow">
+    <button mat-menu-item (click)="profileNav()">
+      <mat-icon class="d-flex align-items-center"
+        ><i-tabler name="user" class="icon-18 d-flex"></i-tabler></mat-icon
+      >My Profile
+    </button>
+
+    <div class="p-x-12 m-t-12">
+      <a
+        (click)="auth.logout()"
+        mat-stroked-button
+        color="primary"
+        class="w-100"
+        >Logout</a
+      >
+    </div>
+  </mat-menu>
+</mat-toolbar>

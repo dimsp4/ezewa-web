@@ -1,0 +1,31 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+//   height: 100vh;
+}
+
+.profile-card {
+  width: 400px;
+  padding: 20px;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.profile-avatar {
+  background-image: url("/assets/images/profile/user-1.jpg");
+  background-size: cover;
+  width: 64px;
+  height: 64px;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.justify-content-center {
+  justify-content: center;
+}
+
+.mr-2 {
+  margin-right: 0.5rem;
+}

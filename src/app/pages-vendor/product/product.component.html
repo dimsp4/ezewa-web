@@ -1,0 +1,46 @@
+<div
+  class="app-container d-flex flex-column align-items-center justify-content-center"
+  *ngIf="!loading; else loadingContent"
+>
+  <br />
+  <h3 class="mb-3">Product List</h3>
+  <div class="table-wrapper w-100">
+    <mat-table [dataSource]="products" class="mat-elevation-z8">
+      <ng-container matColumnDef="image">
+        <mat-header-cell *matHeaderCellDef>Product Image</mat-header-cell>
+        <mat-cell *matCellDef="let product">
+          <img
+            [src]="product.productImages[0].url"
+            alt="img"
+            class="product-image"
+          />
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="productName">
+        <mat-header-cell *matHeaderCellDef>Product</mat-header-cell>
+        <mat-cell *matCellDef="let product">{{ product.productName }}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="description">
+        <mat-header-cell *matHeaderCellDef>Description</mat-header-cell>
+        <mat-cell *matCellDef="let product">{{ product.description }}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="stock">
+        <mat-header-cell *matHeaderCellDef>Stock</mat-header-cell>
+        <mat-cell *matCellDef="let product">{{ product.stock }}</mat-cell>
+      </ng-container>
+      <mat-header-row
+        *matHeaderRowDef="['image', 'productName', 'description', 'stock']"
+      ></mat-header-row>
+      <mat-row
+        *matRowDef="
+          let row;
+          columns: ['image', 'productName', 'description', 'stock']
+        "
+      ></mat-row>
+    </mat-table>
+  </div>
+</div>
+
+<ng-template #loadingContent>
+  <app-loading-overlay [isLoading]="loading"></app-loading-overlay>
+</ng-template>

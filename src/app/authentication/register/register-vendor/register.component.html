@@ -1,0 +1,53 @@
+<mat-card class="cardWithShadow boxed-auth">
+  <mat-card-content class="p-32">
+    <div class="text-center">
+      <h2 class="align-middle m-2">Vendor Register</h2>
+    </div>
+
+    <form class="m-t-30" [formGroup]="form">
+      <mat-label class="mat-subtitle-2 f-s-14 f-w-600 m-b-12 d-block"
+        >Email</mat-label
+      >
+      <mat-form-field appearance="outline" class="w-100" color="primary">
+        <input matInput type="email" formControlName="email" />
+      </mat-form-field>
+      <!-- password -->
+      <mat-label class="mat-subtitle-2 f-s-14 f-w-600 m-b-12 d-block"
+        >Password</mat-label
+      >
+      <mat-form-field appearance="outline" class="w-100" color="primary">
+        <input matInput type="password" formControlName="password" />
+      </mat-form-field>
+
+      <a
+        (click)="submit(form.value)"
+        mat-flat-button
+        color="primary"
+        class="w-100"
+      >
+        Register as Vendor
+      </a>
+      <!-- input -->
+    </form>
+    <span class="d-block f-w-500 text-center m-t-24"
+      >Want to be customer? 
+
+      <a
+        (click)="changeCustomer()"
+        class="text-decoration-none text-primary f-w-500 f-s-14"
+      >
+        as Customer</a
+      >
+    </span>
+    <span class="d-block f-w-500 text-center"
+      >Already have an Account?
+
+      <a
+        [routerLink]="['/auth/login']"
+        class="text-decoration-none text-primary f-w-500 f-s-14"
+      >
+        Sign In</a
+      >
+    </span>
+  </mat-card-content>
+</mat-card>

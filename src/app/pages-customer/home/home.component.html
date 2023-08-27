@@ -1,0 +1,187 @@
+<div class="bg-image">
+  <div class="content-1 p-3">
+    <nav
+      class="navbar row fixed-top justify-content-between"
+      *ngIf="!scrolled; else scrolledDown"
+    >
+      <div class="col-3">
+        <h1 class="ms-4" style="color: white; font-weight: 600">ezewa</h1>
+      </div>
+      <div class="col-2 text-end me-4">
+        <button
+          [matMenuTriggerFor]="profilemenu"
+          mat-stroked-button
+          style="color: white; border-color: white; font-weight: 600"
+          type="button"
+          aria-expanded="false"
+        >
+          Welcome User
+        </button>
+        <mat-menu #profilemenu="matMenu" class="topbar-dd cardWithShadow mt-2">
+          <button mat-menu-item>
+            <mat-icon class="d-flex align-items-center"
+              ><i-tabler
+                name="user"
+                class="icon-18 d-flex"
+              ></i-tabler></mat-icon
+            >My Profile
+          </button>
+
+          <div class="p-x-12 m-t-12">
+            <a
+              (click)="logoutButton()"
+              mat-stroked-button
+              color="dark"
+              class="w-100"
+              >Logout</a
+            >
+          </div>
+        </mat-menu>
+      </div>
+    </nav>
+    <ng-template #scrolledDown>
+      <nav
+        class="navbar row justify-content-between fixed-top"
+        style="background-color: white"
+      >
+        <div class="col-2">
+          <h1 class="ms-4" style="font-weight: 600; color: black">ezewa</h1>
+        </div>
+        <div class="col-6" *ngIf="search">
+          <form class="d-flex" role="search">
+            <input
+              class="form-control me-2"
+              type="search"
+              placeholder="Search by name/location/address"
+              aria-label="Search"
+            />
+            <button mat-button type="submit">
+              <i-tabler name="search"></i-tabler>
+            </button>
+          </form>
+        </div>
+        <div class="col-2 text-end me-4">
+          <button
+            [matMenuTriggerFor]="profilemenu"
+            mat-stroked-button
+            style="font-weight: 600"
+            type="button"
+            aria-expanded="false"
+          >
+            Welcome User
+          </button>
+          <mat-menu
+            #profilemenu="matMenu"
+            class="topbar-dd cardWithShadow mt-2"
+          >
+            <button mat-menu-item>
+              <mat-icon class="d-flex align-items-center"
+                ><i-tabler
+                  name="user"
+                  class="icon-18 d-flex"
+                ></i-tabler></mat-icon
+              >My Profile
+            </button>
+
+            <div class="p-x-12 m-t-12">
+              <a
+                (click)="logoutButton()"
+                mat-stroked-button
+                color="dark"
+                class="w-100"
+                >Logout</a
+              >
+            </div>
+          </mat-menu>
+        </div>
+      </nav>
+    </ng-template>
+    <!-- body -->
+    <h1
+      class="title mt-5 pt-5 ms-3 mb-0"
+      [countUp]="count"
+      [duration]="duration"
+    ></h1>
+    <div class="col-7 ms-3">
+      <h4 class="text-start mb-4" style="font-weight: 600; font-size: 2rem">
+        Find your next building to rent <br />
+        with amazing price
+      </h4>
+      <form [formGroup]="formGroup" (ngSubmit)="searchButton(formGroup.value)" class="d-flex" role="search">
+        <input
+          class="form-control px-3"
+          formControlName="input"
+          type="search"
+          placeholder="Search by name/location/address"
+          aria-label="Search"
+          style="font-weight: 600"
+        />
+        <button
+          mat-icon-button
+          class="ms-2"
+          type="submit"
+        >
+          <i-tabler name="search" class="text-light"></i-tabler>
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+<div class="row h-100">
+  <div class="col-5">
+    <p class="fs-5 m-5 p-5 fw-bold">
+      We pride ourselve on providing exceptional building
+    </p>
+  </div>
+  <div class="col-7">
+    <p class="fs-2 mt-5 me-5 pt-5 pe-5 fw-bold lh-lg">
+      Our services will make you satisfied for effortless renting building that
+      provided with many option for every occasion
+    </p>
+  </div>
+  <div class="col-12">
+    <h1
+      class="bg-dark d-flex h-100 justify-content-center align-items-center text-light"
+    >
+      Carousel Soon..
+    </h1>
+  </div>
+</div>
+<div class="row p-5 mx-5 justify-content-between">
+  <div class="col-6">
+    <p class="fs-2 lh-lg fw-semibold mb-4">
+      Do you have a building and want to colaborate with us?
+    </p>
+    <p class="fs-5 mb-4">
+      Join as vendor to start renting your own building in our page.
+    </p>
+    <button class="btn btn-dark w-100 py-3 mb-4">Join us</button>
+    <p class="fs-5 mb-4">Have join with us before as a vendor?</p>
+    <button class="btn btn-outline-dark w-100 py-3">Login as Vendor</button>
+  </div>
+  <div class="col-5">
+    <img
+      src="assets/images/backgrounds/building.jpg"
+      alt="building"
+      class="rounded float-end mb-5"
+      style="object-fit: cover; height: 450px; width: 450px"
+    />
+  </div>
+</div>
+<div class="row p-5 bg-body-tertiary">
+  <div class="col-12 text-center mb-3">
+    <p class="fs-3 fw-semibold">Keluarga Cemara's Expert Teams</p>
+  </div>
+  <div class="col-3">
+    <p class="text-center">Member</p>
+  </div>
+  <div class="col-3">
+    <p class="text-center">Member</p>
+  </div>
+  <div class="col-3">
+    <p class="text-center">Member</p>
+  </div>
+  <div class="col-3">
+    <p class="text-center">Member</p>
+  </div>
+</div>

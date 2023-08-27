@@ -30,9 +30,11 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "bootstrap/scss/bootstrap.scss",
+              "src/assets/scss/style.scss"
             ],
-            "scripts": []
+            "scripts": ["bootstrap/dist/js/bootstrap.bundle.min.js"]
           },
           "configurations": {
             "production": {
@@ -68,7 +70,8 @@
               "browserTarget": "ezewa:build:production"
             },
             "development": {
-              "browserTarget": "ezewa:build:development"
+              "browserTarget": "ezewa:build:development",
+              "proxyConfig": "proxy.conf.json"
             }
           },
           "defaultConfiguration": "development"
@@ -93,6 +96,7 @@
               "src/assets"
             ],
             "styles": [
+              "@angular/material/prebuilt-themes/deeppurple-amber.css",
               "src/styles.scss"
             ],
             "scripts": []
@@ -100,5 +104,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "d6f1bf51-a9ac-46bd-81e3-a44c9d4b65ee"
   }
 }

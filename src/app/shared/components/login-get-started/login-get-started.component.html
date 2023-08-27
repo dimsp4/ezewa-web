@@ -1,0 +1,21 @@
+<mat-dialog-content *ngIf="page === 0; else pages">
+    <div class="row m-5" >
+      <div class="col-6">
+        <button class="btn p-5" (click)="vendorPage()">
+          <div class="text-center"><h4>as</h4></div>
+          <h1 class="text-center" style="font-weight: 600;">Vendor</h1>
+        </button>
+      </div>
+      <div class="col-6">
+          <button class="btn p-5" (click)="customerPage()">
+            <div class="text-center"><h4>as</h4></div>
+            <h1 class="text-center" style="font-weight: 600;">Customer</h1>
+          </button>
+        </div>
+    </div>
+  </mat-dialog-content>
+  <ng-template #pages>
+    <app-login *ngIf="page === 1" (page)="getPage($event)"></app-login>
+    <app-login-customer *ngIf="page === 2" (page)="getPage($event)"></app-login-customer>
+  </ng-template>
+  

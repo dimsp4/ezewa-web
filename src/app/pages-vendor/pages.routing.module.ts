@@ -1,10 +1,8 @@
 import { Routes } from '@angular/router';
-import { CustomerComponent } from './customer/customer.component';
-import { ProductComponent } from './product/product.component';
-import { StoreComponent } from './store/store.component';
 import { TransactionComponent } from './transaction/transaction.component';
 import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './profile/profile.component';
+import { BuildingComponent } from './building/building.component';
 
 export const PagesRoutes: Routes = [
   {
@@ -17,20 +15,16 @@ export const PagesRoutes: Routes = [
     component: HomeComponent,
   },
   {
-    path: 'store',
-    component: StoreComponent,
-  },
-  {
-    path: 'customer',
-    component: CustomerComponent,
-  },
-  {
-    path: 'product',
-    component: ProductComponent,
+    path: 'building',
+    component: BuildingComponent,
+    loadChildren: () =>
+      import('./building/building.module').then((m) => m.BuildingModule),
   },
   {
     path: 'transaction',
     component: TransactionComponent,
+    loadChildren: () =>
+      import('./transaction/transaction.module').then((m) => m.TransactionModule),
   },
   {
     path: 'profile',

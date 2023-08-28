@@ -7,29 +7,24 @@ export const navItems: NavItem[] = [
   {
     displayName: 'Home',
     iconName: 'home',
-    route: '/dashboard/home',
+    route: '/vendor/home',
   },
   {
-    displayName: 'Product',
-    iconName: 'list',
-    route: '/dashboard/product',
-  },
-  {
-    displayName: 'Store',
+    displayName: 'Building Management',
     iconName: 'building-store',
-    route: '/dashboard/store',
-  },
-  {
-    displayName: 'Customers',
-    iconName: 'users',
-    route: '/dashboard/customer',
+    route: '/vendor/building/all',
   },
   {
     navCap: 'Transaction',
   },
   {
-    displayName: 'Purchase',
+    displayName: 'Booking List',
+    iconName: 'list-check',
+    route: '/vendor/transaction/booking-list',
+  },
+  {
+    displayName: 'Purchase History',
     iconName: 'shopping-cart',
-    route: '/dashboard/transaction',
+    route: '/vendor/transaction/purchase-history',
   },
 ];

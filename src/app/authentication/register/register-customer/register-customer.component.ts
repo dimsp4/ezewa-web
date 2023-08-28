@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { AuthService } from '../../auth.service';
 import { UserRequest } from '../../model/user-request.model';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-register-customer',
@@ -13,8 +14,9 @@ import { UserRequest } from '../../model/user-request.model';
 export class RegisterCustomerComponent {
   constructor(
     private readonly router: Router,
-    private readonly service: AuthService
-  ) {}
+    private readonly service: AuthService,
+    private readonly matDialog: MatDialog
+    ) {}
   
   @Output() page = new EventEmitter<number>()
 
@@ -51,6 +53,7 @@ export class RegisterCustomerComponent {
         Swal.fire('Invalid Email or Password');
       },
     });
+    this.matDialog.closeAll()
   }
 
   changeVendor(){

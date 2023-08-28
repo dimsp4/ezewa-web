@@ -1,0 +1,31 @@
+<app-detail [building]="building"></app-detail>
+<div class="row justify-content-between mb-2 me-3">
+    <h3 class="col">Your Building</h3>
+    <button
+    mat-stroked-button
+    color="primary"
+    type="button"
+    class="col-2 "
+    (click)="openAddBuilding()"
+  >
+    Add Building
+  </button>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-4" *ngFor="let build of building">
+      <div class="card mb-4">
+        <img
+          class="card-img-top"
+          src="{{ build.images }}"
+          alt="Card image cap"
+        />
+        <div class="card-body">
+          <p class="card-text">
+            {{ build.building.buildingName }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

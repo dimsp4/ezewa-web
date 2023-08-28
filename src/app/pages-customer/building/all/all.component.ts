@@ -7,4 +7,43 @@ import { Component } from '@angular/core';
 })
 export class AllComponent {
 
+  building = [
+    {
+      "building": {
+        "buildingName": "building1",
+        "description": "building description",
+        "location": "jakarta",
+        "price": 1000,
+        "vendorId": "101010"
+      },
+      "images": [
+        "string"
+      ]
+    },
+    {
+      "building": {
+        "buildingName": "building2",
+        "description": "building description",
+        "location": "jakarta",
+        "price": 1000,
+        "vendorId": "101010"
+      },
+      "images": [
+        "string"
+      ]
+    },
+    {
+      "building": {
+        "buildingName": "building3",
+        "description": "building description",
+        "location": "jakarta",
+        "price": 1000,
+        "vendorId": "101010"
+      },
+      "images": [
+        "string"
+      ]
+    }
+  ]
+
 }

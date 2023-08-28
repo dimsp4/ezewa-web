@@ -25,7 +25,6 @@ export class LandingComponent {
 
   openLogin() {
     const dialogRef = this.dialog.open(LoginGetStartedComponent, {
-      closeOnNavigation: true
     });
 
     dialogRef.afterClosed().subscribe((result) => {

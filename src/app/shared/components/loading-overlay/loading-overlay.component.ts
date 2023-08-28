@@ -3,13 +3,13 @@ import { Component, Input } from '@angular/core';
 @Component({
   selector: 'app-loading-overlay',
   template: `
-    <div class="loading-overlay" *ngIf="isLoading">
+    <!-- <div class="loading-overlay" *ngIf="isLoading">
       <mat-progress-spinner
         mode="indeterminate"
         diameter="40"
         color="primary"
       ></mat-progress-spinner>
-    </div>
+    </div> -->
   `,
   styles: [
     `

@@ -23,9 +23,9 @@ export class AuthExceptionInterceptor implements HttpInterceptor {
         
         if (err.status === 401) {
           this.router.navigateByUrl('')
-          Swal.fire('Unauthorized', 'Need a f**ckin token.')
+          // Swal.fire('Unauthorized', 'Need a f**ckin token.')
         } else if (err.status === 404) {
-          Swal.fire('Api not found', 'Please code wisely.')
+          // Swal.fire('Api not found', 'Please code wisely.')
         }
         return throwError(() => err)
       })

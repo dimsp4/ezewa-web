@@ -31,12 +31,15 @@ export class AppSideLoginComponent {
   tryAuth(data: UserRequest) {
     this.service.login(data).subscribe({
       next: (res) => {
+        console.log(res);
+        
         let token = res.data.token;
 
         if (token) {
           sessionStorage.setItem('token', token);
           sessionStorage.setItem('email', data.email);
           sessionStorage.setItem('role', res.data.roles);
+          sessionStorage.setItem('id', res.data.id);
           console.log(res);
 
           this.router.navigateByUrl('vendor');
@@ -47,7 +50,6 @@ export class AppSideLoginComponent {
       },
     });
     this.matDialog.closeAll()
-    this.router.navigateByUrl('/vendor')
   }
 
   moveToRegister() {

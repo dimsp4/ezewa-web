@@ -25,7 +25,6 @@ import { BrandingComponent } from './layouts/full/sidebar/branding.component';
 import { AppNavItemComponent } from './layouts/full/sidebar/nav-item/nav-item.component';
 import { AuthExceptionInterceptor } from './authentication/interceptor/interceptor/auth-exception.interceptor';
 import { AuthInterceptor } from './authentication/interceptor/interceptor/auth.interceptor';
-import { TransactionInterceptor } from './pages-vendor/transaction/interceptor/transaction.interceptor';
 import { LandingComponent } from './landing/landing.component';
 import { GetStartedComponent } from './shared/components/get-started/get-started.component';
 import { AppSideLoginComponent } from './authentication/login/login-vendor/login.component';
@@ -34,6 +33,8 @@ import { RegisterCustomerComponent } from './authentication/register/register-cu
 import { LoginGetStartedComponent } from './shared/components/login-get-started/login-get-started.component';
 import { LoginCustomerComponent } from './authentication/login/login-customer/login-customer.component';
 import { PagesCustomerModule } from './pages-customer/pages-customer.module';
+import { PagesModule } from './pages-vendor/pages.module';
+import { BuildingInterceptorInterceptor } from './pages-vendor/building/interceptor/building-interceptor.interceptor';
 
 @NgModule({
   declarations: [
@@ -60,6 +61,8 @@ import { PagesCustomerModule } from './pages-customer/pages-customer.module';
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,
+    PagesModule,
+    PagesCustomerModule,
     TablerIconsModule.pick(TablerIcons),
   ],
   exports: [TablerIconsModule, PagesCustomerModule],
@@ -77,9 +80,14 @@ import { PagesCustomerModule } from './pages-customer/pages-customer.module';
     },
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: TransactionInterceptor,
+      useClass: BuildingInterceptorInterceptor,
       multi: true,
     },
+    // {
+    //   provide: HTTP_INTERCEPTORS,
+    //   useClass: TransactionInterceptor,
+    //   multi: true,
+    // },
   ]
 })
 export class AppModule {}

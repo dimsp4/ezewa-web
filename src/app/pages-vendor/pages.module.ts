@@ -7,27 +7,25 @@ import { FormsModule } from '@angular/forms';
 // icons
 import { TablerIconsModule } from 'angular-tabler-icons';
 import * as TablerIcons from 'angular-tabler-icons/icons';
-import { ProductComponent } from './product/product.component';
-import { CustomerComponent } from './customer/customer.component';
 import { ProfileComponent } from './profile/profile.component';
-import { StoreComponent } from './store/store.component';
 import { TransactionComponent } from './transaction/transaction.component';
 import { LoadingOverlayComponent } from '../shared/components/loading-overlay/loading-overlay.component';
 import { FullComponent } from '../layouts/full/full.component';
+import { TransactionModule } from './transaction/transaction.module';
+import { BuildingComponent } from './building/building.component';
 
 @NgModule({
   declarations: [
-    ProductComponent,
-    CustomerComponent,
     ProfileComponent,
-    StoreComponent,
-    TransactionComponent,
     LoadingOverlayComponent,
+    TransactionComponent,
+    BuildingComponent
   ],
   imports: [
     CommonModule,
     MaterialModule,
     FormsModule,
+    TransactionModule,
     RouterModule.forChild(PagesRoutes),
     TablerIconsModule.pick(TablerIcons),
   ],

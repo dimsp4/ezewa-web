@@ -30,4 +30,6 @@ export class HeaderComponent {
   profileNav(){
     this.router.navigateByUrl('/dashboard/profile')
   }
+
+  
 }

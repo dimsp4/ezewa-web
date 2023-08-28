@@ -1,0 +1,51 @@
+<div *ngIf="buildById" class="row px-4">
+    <label for="imageInput" class="col-3 btn btn-outline-secondary me-2">
+        <input
+          type="file"
+          id="imageInput"
+          style="display: none"
+          (change)="onImageChange(buildById.images[0],$event)"
+        />
+        <img
+          *ngIf="buildById.images.length > 0; else addPicture"
+          [src]="buildById.images[0]"
+          alt="Building"
+          class="rounded mb-3"
+          style="width: inherit"
+        />
+        <ng-template #addPicture>
+          <p class="fs-6">Add Picture</p>
+        </ng-template>
+      </label>
+  <form
+    class="col-9 mb-3 row justify-content-between"
+    [formGroup]="buildingForm"
+    (ngSubmit)="saveBuilding(buildingForm.value)"
+  >
+    <input
+      formControlName="buildingName"
+      type="text"
+      class="form-control col-4"
+      placeholder="Name Building"
+    />
+    <input
+      formControlName="location"
+      type="text"
+      class="form-control col-4"
+      placeholder="Location"
+    />
+    <input
+      formControlName="price"
+      type="text"
+      class="form-control col-3"
+      placeholder="Price"
+    />
+    <input
+      formControlName="description"
+      type="text"
+      class="form-control col-12 mt-3 pb-5"
+      placeholder="Description"
+    />
+  </form>
+  <button type="submit" class="btn btn-dark mt-3 mb-4">Save</button>
+</div>

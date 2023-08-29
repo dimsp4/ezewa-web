@@ -1,15 +1,19 @@
-<div class="container">
-  <div class="row" >
-    <div class="col-4" *ngFor="let build of building">
+<div class="container h-100" *ngIf="building.length > 0; else notfound">
+  <div class="row justify-content-evenly">
+    <div class="col-3" *ngFor="let build of building">
         <div class="card" style="width: 18rem">
-            <img class="card-img-top" src="..." alt="Card image cap" />
+            <img class="card-img-top" [src]="build.buildingImages[0].url" alt="Card image cap" />
             <div class="card-body">
               <p class="card-text">
-                {{build.building.buildingName}}
+                {{build.buildingName}}
               </p>
             </div>
           </div>
     </div>
   </div>
 </div>
-
+<ng-template #notfound>
+  <div class="d-flex justify-content-center align-items-center h-100">
+    <h1 class="fs-3">Not found..</h1>
+  </div>
+</ng-template>

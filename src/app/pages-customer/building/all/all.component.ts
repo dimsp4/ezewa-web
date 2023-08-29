@@ -1,49 +1,26 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { PagesCustomerService } from '../../pages-customer.service';
+import { BuildingResponse } from '../model/building-response.model';
 
 @Component({
   selector: 'app-all',
   templateUrl: './all.component.html',
   styleUrls: ['./all.component.scss']
 })
-export class AllComponent {
+export class AllComponent implements OnInit{
+  
+  constructor(private readonly service: PagesCustomerService){}
+  building: BuildingResponse[] = []
 
-  building = [
-    {
-      "building": {
-        "buildingName": "building1",
-        "description": "building description",
-        "location": "jakarta",
-        "price": 1000,
-        "vendorId": "101010"
-      },
-      "images": [
-        "string"
-      ]
-    },
-    {
-      "building": {
-        "buildingName": "building2",
-        "description": "building description",
-        "location": "jakarta",
-        "price": 1000,
-        "vendorId": "101010"
-      },
-      "images": [
-        "string"
-      ]
-    },
-    {
-      "building": {
-        "buildingName": "building3",
-        "description": "building description",
-        "location": "jakarta",
-        "price": 1000,
-        "vendorId": "101010"
-      },
-      "images": [
-        "string"
-      ]
-    }
-  ]
+  ngOnInit(): void {
+    this.getAll()
+  }
 
+  getAll(){
+    this.service.getAllBuilding().subscribe({
+      next: res => {
+        this.building = res.data
+      }
+    })
+  }
 }

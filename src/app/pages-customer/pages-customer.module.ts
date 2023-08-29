@@ -12,6 +12,7 @@ import { AllComponent } from './building/all/all.component';
 import { DetailComponent } from './building/detail/detail.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {ProfileInfoComponent} from "../shared/components/profile-info/profile-info.component";
+import { CarouselModule } from 'ngx-owl-carousel-o';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import {ProfileInfoComponent} from "../shared/components/profile-info/profile-in
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,
-    TablerIconsModule
+    TablerIconsModule,
+    CarouselModule
   ]
 })
 export class PagesCustomerModule { }

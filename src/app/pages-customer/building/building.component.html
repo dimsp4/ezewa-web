@@ -1,2 +1,52 @@
-<p>building works!</p>
+<nav
+  class="navbar row justify-content-between fixed-top"
+  style="background-color: white;"
+>
+  <div class="col-2">
+    <h1 class="ms-4" style="font-weight: 600; color: black">ezewa</h1>
+  </div>
+  <div class="col-6">
+    <form class="d-flex" role="search" [formGroup]="formGroup" (ngSubmit)="searchButton(formGroup.value)">
+      <input
+        class="form-control me-2"
+        type="search"
+        formControlName="input"
+        placeholder="{{searchPlaceHolder || 'Search by name/location/address'}}"
+        aria-label="Search"
+      />
+      <button mat-button type="submit">
+        <i-tabler name="search"></i-tabler>
+      </button>
+    </form>
+  </div>
+  <div class="col-2 text-end me-4">
+    <button
+      [matMenuTriggerFor]="profilemenu"
+      mat-stroked-button
+      style="font-weight: 600"
+      type="button"
+      aria-expanded="false"
+    >
+      Welcome User
+    </button>
+    <mat-menu #profilemenu="matMenu" class="topbar-dd cardWithShadow mt-2">
+      <button mat-menu-item>
+        <mat-icon class="d-flex align-items-center">
+          <i-tabler name="user" class="icon-18 d-flex"></i-tabler>
+        </mat-icon>
+        My Profile
+      </button>
+
+      <div class="p-x-12 m-t-12">
+        <a
+          (click)="logoutButton()"
+          mat-stroked-button
+          color="dark"
+          class="w-100"
+          >Logout</a
+        >
+      </div>
+    </mat-menu>
+  </div>
+</nav>
 <router-outlet></router-outlet>

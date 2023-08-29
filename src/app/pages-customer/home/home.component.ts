@@ -1,7 +1,13 @@
 import { Component, HostListener } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { OwlOptions } from 'ngx-owl-carousel-o';
 import { AuthService } from 'src/app/authentication/auth.service';
+import { AppSideLoginComponent } from 'src/app/authentication/login/login-vendor/login.component';
+import { AppSideRegisterComponent } from 'src/app/authentication/register/register-vendor/register.component';
+import { GetStartedComponent } from 'src/app/shared/components/get-started/get-started.component';
+import { LoginGetStartedComponent } from 'src/app/shared/components/login-get-started/login-get-started.component';
 
 @Component({
   selector: 'app-home',
@@ -9,12 +15,44 @@ import { AuthService } from 'src/app/authentication/auth.service';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent {
+  constructor(
+    private readonly router: Router,
+    private readonly authS: AuthService,
+    public dialog: MatDialog
+  ) {}
 
-  constructor(private readonly router: Router, private readonly authS: AuthService,) {}
+  customOptions: OwlOptions = {
+    margin: 20,
+    autoplay: true,
+    autoplaySpeed: 1000,
+    loop: true,
+    mouseDrag: true,
+    touchDrag: true,
+    pullDrag: true,
+    dots: true,
+    dotsEach: 2,
+    rewind: true,
+    navSpeed: 700,
+    responsive: {
+      0: {
+        items: 1
+      },
+      400: {
+        items: 2
+      },
+      740: {
+        items: 3
+      },
+      940: {
+        items: 4
+      }
+    },
+    // nav: true
+  }
 
   formGroup: FormGroup = new FormGroup({
-    input: new FormControl('')
-  })
+    input: new FormControl(''),
+  });
 
   count = 1000;
   duration = 2500;
@@ -22,10 +60,10 @@ export class HomeComponent {
   scrolled = false;
   search = false;
 
-  dhimas = 'dhimas'
-  fredy = 'fredy'
-  ibnu = 'ibnu'
-  hafidz = 'hafidz'
+  dhimas = 'dhimas';
+  fredy = 'fredy';
+  ibnu = 'ibnu';
+  hafidz = 'hafidz';
 
   @HostListener('document:scroll')
   scrollFunction() {
@@ -48,16 +86,34 @@ export class HomeComponent {
     }
   }
 
-  logoutButton(){
-    this.authS.logout()
+  logoutButton() {
+    this.authS.logout();
   }
 
-  searchButton(data: any){
+  searchButton(data: any) {
     console.log(data.input);
     if (data.input) {
-      this.router.navigateByUrl(`building/${data.input}`)
+      this.router.navigate([`customer/building`], {
+        queryParams: { q: data.input },
+      });
     } else {
-      this.router.navigateByUrl(`building`)
+      this.router.navigateByUrl(`customer/building`);
     }
+  }
+
+  openLoginVendor() {
+    const dialogRef = this.dialog.open(AppSideLoginComponent, {});
+
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+
+  openRegisterVendor() {
+    const dialogRef = this.dialog.open(AppSideRegisterComponent, {});
+
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 }

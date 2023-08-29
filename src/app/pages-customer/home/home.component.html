@@ -51,15 +51,21 @@
           <h1 class="ms-4" style="font-weight: 600; color: black">ezewa</h1>
         </div>
         <div class="col-6" *ngIf="search">
-          <form class="d-flex" role="search">
+          <form [formGroup]="formGroup" (ngSubmit)="searchButton(formGroup.value)" class="d-flex" role="search">
             <input
-              class="form-control me-2"
+              class="form-control px-3"
+              formControlName="input"
               type="search"
               placeholder="Search by name/location/address"
               aria-label="Search"
+              style="font-weight: 600;"
             />
-            <button mat-button type="submit">
-              <i-tabler name="search"></i-tabler>
+            <button
+              mat-icon-button
+              class="ms-2"
+              type="submit"
+            >
+              <i-tabler name="search" class="text-dark"></i-tabler>
             </button>
           </form>
         </div>
@@ -146,11 +152,35 @@
     </p>
   </div>
   <div class="col-12">
-    <h1
-      class="bg-dark d-flex h-100 justify-content-center align-items-center text-light"
-    >
-      Carousel Soon..
-    </h1>
+    <div class="wrapper">
+      <owl-carousel-o [options]="customOptions">
+        <ng-template carouselSlide>
+            <div class="slide ">
+                <img class="img-fluid rounded" src="assets/images/backgrounds/building.jpg" style="object-fit: cover;">
+            </div>
+        </ng-template>
+        <ng-template carouselSlide>
+            <div class="slide rounded">
+                <img src="assets/cat.jpg">
+            </div>
+        </ng-template>
+        <ng-template carouselSlide>
+            <div class="slide rounded">
+                <img src="assets/monkey.jpg">
+            </div>
+        </ng-template>
+        <ng-template carouselSlide>
+            <div class="slide rounded">
+                <img src="assets/chihuahua.jpg">
+            </div>
+        </ng-template>
+        <ng-template carouselSlide>
+            <div class="slide rounded">
+                <img src="assets/rabbit.jpg">
+            </div>
+        </ng-template>
+    </owl-carousel-o>
+    </div>
   </div>
 </div>
 <div class="row p-5 mx-5 justify-content-between">
@@ -161,9 +191,9 @@
     <p class="fs-5 mb-4">
       Join as vendor to start renting your own building in our page.
     </p>
-    <button class="btn btn-dark w-100 py-3 mb-4">Join us</button>
+    <button class="btn btn-dark w-100 py-3 mb-4" (click)="openLoginVendor()">Join us</button>
     <p class="fs-5 mb-4">Have join with us before as a vendor?</p>
-    <button class="btn btn-outline-dark w-100 py-3">Login as Vendor</button>
+    <button class="btn btn-outline-dark w-100 py-3" (click)="openRegisterVendor()">Login as Vendor</button>
   </div>
   <div class="col-5">
     <img

@@ -38,6 +38,7 @@ export class LoginCustomerComponent {
           sessionStorage.setItem('token', token);
           sessionStorage.setItem('email', data.email);
           sessionStorage.setItem('role', res.data.roles);
+          sessionStorage.setItem('id', res.data.id);
           console.log(res);
 
           this.router.navigateByUrl('customer');

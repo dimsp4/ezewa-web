@@ -1,1 +1,110 @@
-<p>detail works!</p>
+<div class="mt-5 pt-5">
+  <div class="row mx-5">
+    <nav aria-label="breadcrumb" class="col-12">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a routerLink="/customer" class="text-dark">Home</a>
+        </li>
+        <li class="breadcrumb-item">
+          <a routerLink="/customer/building/all" class="text-dark">Search</a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">
+          {{ building?.buildingName }}
+        </li>
+      </ol>
+    </nav>
+    <div class="col-5 px-0">
+      <img
+        class="img-fluid rounded-start-3"
+        [src]="building!.buildingImages[0].url"
+        alt="image"
+        style="height: 350px; width: 100%; object-fit: cover"
+      />
+    </div>
+    <div class="col-7 border rounded-end-3">
+      <div class="row p-3 justify-content-between">
+        <div class="col-7 row">
+          <p class="fs-4 fw-bold mb-1">{{ building!.buildingName }}</p>
+          <p class="fs-6">
+            <i-tabler
+              name="map-pin"
+              style="height: 15px; width: 15px"
+            ></i-tabler>
+            {{ building!.location }}
+          </p>
+          <p class="fs-5">{{ building!.description }}</p>
+        </div>
+        <div class="col-4 p-0 text-end">
+          <span class="fs-6 me-1">from</span>
+          <span class="fs-5 fw-bold text-danger">{{
+            building!.price | priceFormat
+          }}</span>
+          <button
+            mat-stroked-button
+            [matMenuTriggerFor]="vendorInfo"
+            class="mt-3 w-75"
+          >
+            Vendor Info
+          </button>
+          <mat-menu #vendorInfo="matMenu" class="topbar-dd cardWithShadow mt-2">
+            <table class="table mt-3">
+              <thead>
+                <tr>
+                  <th scope="col" class="vertical-header">Information</th>
+                  <th scope="col">Details</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="vertical-header">Name</td>
+                  <td>{{ building!.vendor.name }}</td>
+                </tr>
+                <tr>
+                  <td class="vertical-header">Address</td>
+                  <td>{{ building!.vendor.address }}</td>
+                </tr>
+                <tr>
+                  <td class="vertical-header">Email</td>
+                  <td>{{ building!.vendor.email }}</td>
+                </tr>
+                <tr>
+                  <td class="vertical-header">Mobile Phone</td>
+                  <td>{{ building!.vendor.mobilePhone }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </mat-menu>
+        </div>
+        <form [formGroup]="datePick">
+            <mat-form-field class="col-12 p-0 mt-3">
+                <mat-label>Choose a date</mat-label>
+                <input matInput [matDatepicker]="picker" formControlName="date"/>
+                <mat-datepicker-toggle
+                  matIconSuffix
+                  [for]="picker"
+                ></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+        </form>
+        <button
+          class="col-12 py-3 btn btn-outline-dark"
+          (click)="startTransaction()"
+        >
+          Book This Building
+        </button>
+      </div>
+    </div>
+    <div *ngIf="status > 0" class="col-12 my-3 p-0">
+        <div *ngIf="status === 1" class=" border rounded bg-success pt-3">
+            <p class="fs-4 text-center text-light">Transaction Success!</p>
+        </div>
+        <div *ngIf="status === 2" class="row border rounded bg-warning p-3 justify-content-between">
+            <p class="col-4 fs-4 text-light">Transaction Pending</p>
+            <button (click)="openTransaction(idTransaction)" class="col-2 fs-6 fw-bold btn btn-outline-light">Check</button>
+        </div>
+        <div *ngIf="status === 3" class="border rounded bg-danger pt-3">
+            <p class="fs-4 text-center text-light">Transaction Failure</p>
+        </div>
+    </div>
+  </div>
+</div>

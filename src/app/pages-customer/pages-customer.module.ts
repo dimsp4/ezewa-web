@@ -13,6 +13,8 @@ import { DetailComponent } from './building/detail/detail.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {ProfileInfoComponent} from "../shared/components/profile-info/profile-info.component";
 import { CarouselModule } from 'ngx-owl-carousel-o';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { PriceFormatPipe } from '../shared/pipe/price-format.pipe';
 
 
 @NgModule({
@@ -22,7 +24,8 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
     BuildingComponent,
     AllComponent,
     DetailComponent,
-    ProfileInfoComponent
+    ProfileInfoComponent,
+    PriceFormatPipe
   ],
   imports: [
     CommonModule,
@@ -31,7 +34,8 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
     ReactiveFormsModule,
     MaterialModule,
     TablerIconsModule,
-    CarouselModule
+    NgxPaginationModule,
+    CarouselModule,
   ]
 })
 export class PagesCustomerModule { }

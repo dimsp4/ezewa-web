@@ -6,16 +6,7 @@ import { DetailComponent } from './detail/detail.component';
 
 const routes: Routes = [
   {
-    path: '',
-    redirectTo: 'all',
-    pathMatch: 'full',
-  },
-  {
     path: 'all',
-    component: AllComponent,
-  },
-  {
-    path: 'all/:id',
     component: AllComponent,
   },
   {

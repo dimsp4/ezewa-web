@@ -21,6 +21,15 @@ export class HomeComponent {
     public dialog: MatDialog
   ) {}
 
+  imagesCarousel = [
+    'assets/images/backgrounds/building.jpg',
+    'assets/images/backgrounds/landing.jpg',
+    'assets/images/backgrounds/customer-bg.jpg',
+    'assets/images/backgrounds/building.jpg',
+    'assets/images/backgrounds/landing.jpg',
+    'assets/images/backgrounds/customer-bg.jpg',
+  ];
+
   customOptions: OwlOptions = {
     margin: 20,
     autoplay: true,
@@ -35,20 +44,20 @@ export class HomeComponent {
     navSpeed: 700,
     responsive: {
       0: {
-        items: 1
+        items: 1,
       },
       400: {
-        items: 2
+        items: 2,
       },
       740: {
-        items: 3
+        items: 3,
       },
       940: {
-        items: 4
-      }
+        items: 4,
+      },
     },
     // nav: true
-  }
+  };
 
   formGroup: FormGroup = new FormGroup({
     input: new FormControl(''),
@@ -97,7 +106,7 @@ export class HomeComponent {
         queryParams: { q: data.input },
       });
     } else {
-      this.router.navigateByUrl(`customer/building`);
+      this.router.navigateByUrl(`customer/building/all`);
     }
   }
 

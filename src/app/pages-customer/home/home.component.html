@@ -154,29 +154,9 @@
   <div class="col-12">
     <div class="wrapper">
       <owl-carousel-o [options]="customOptions">
-        <ng-template carouselSlide>
-            <div class="slide ">
-                <img class="img-fluid rounded" src="assets/images/backgrounds/building.jpg" style="object-fit: cover;">
-            </div>
-        </ng-template>
-        <ng-template carouselSlide>
-            <div class="slide rounded">
-                <img src="assets/cat.jpg">
-            </div>
-        </ng-template>
-        <ng-template carouselSlide>
-            <div class="slide rounded">
-                <img src="assets/monkey.jpg">
-            </div>
-        </ng-template>
-        <ng-template carouselSlide>
-            <div class="slide rounded">
-                <img src="assets/chihuahua.jpg">
-            </div>
-        </ng-template>
-        <ng-template carouselSlide>
-            <div class="slide rounded">
-                <img src="assets/rabbit.jpg">
+        <ng-template carouselSlide *ngFor="let images of imagesCarousel">
+            <div class="slide">
+                <img class="rounded" [src]="images" style="width: 100%; height: 320px; object-fit: cover;">
             </div>
         </ng-template>
     </owl-carousel-o>

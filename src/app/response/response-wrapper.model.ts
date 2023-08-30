@@ -1,3 +1,9 @@
+export interface ResponseWrapperSingle<T> {
+  errors: any;
+  data: T;
+  paging: PagingInfo;
+}
+
 export interface ResponseWrapper<T> {
   errors: any;
   data: T[];

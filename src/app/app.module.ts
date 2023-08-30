@@ -35,6 +35,8 @@ import { LoginCustomerComponent } from './authentication/login/login-customer/lo
 import { PagesCustomerModule } from './pages-customer/pages-customer.module';
 import { PagesModule } from './pages-vendor/pages.module';
 import { BuildingInterceptorInterceptor } from './pages-vendor/building/interceptor/building-interceptor.interceptor';
+import { PriceFormatPipe } from './shared/pipe/price-format.pipe';
+import { TransactionDialogComponent } from './shared/components/transaction-dialog/transaction-dialog.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +54,7 @@ import { BuildingInterceptorInterceptor } from './pages-vendor/building/intercep
     AppSideRegisterComponent,
     RegisterCustomerComponent,
     LoginGetStartedComponent,
+    TransactionDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -65,7 +68,7 @@ import { BuildingInterceptorInterceptor } from './pages-vendor/building/intercep
     PagesCustomerModule,
     TablerIconsModule.pick(TablerIcons),
   ],
-  exports: [TablerIconsModule, PagesCustomerModule],
+  exports: [TablerIconsModule],
   bootstrap: [AppComponent],
   providers: [
     {

@@ -28,9 +28,9 @@ export class BuildingComponent {
   searchButton(data: any){
     console.log(data.input);
     if (data.input) {
-      this.router.navigate([`customer/building`], {queryParams: {q: data.input}})
+      this.router.navigate([`customer/building/all`], {queryParams: {q: data.input}})
     } else {
-      this.router.navigateByUrl(`customer/building`)
+      this.router.navigateByUrl(`customer/building/all`)
     }
   }
 

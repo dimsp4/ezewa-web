@@ -1,1 +1,24 @@
-<p>purchase-history works!</p>
+<div class="container mt-5">
+    <h2>Purchase History</h2>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Building Name</th>
+          <th>Customer Email</th>
+          <th>Date Start Transaction</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let transaction of transactions; let i = index">
+          <td>{{ transaction.orderDetails[0].buildingResponse.buildingName }}</td>
+          <td>{{ customer[i].email }}</td>
+          <td>{{ transaction.orderDetails[0].dateStart }}</td>
+          <td [ngClass]="getStatusColorClass(transaction.orderDetails[0].status)">
+            {{ transaction.orderDetails[0].status }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

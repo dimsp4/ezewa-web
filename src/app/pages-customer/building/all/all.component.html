@@ -6,7 +6,7 @@
     <div
       class="col-3 mb-4"
       *ngFor="
-        let build of building | paginate : { itemsPerPage: 8, currentPage: p,}
+        let build of building | paginate : { itemsPerPage: paging.size, currentPage: p, totalItems: paging.count}
       "
     >
       <div class="card" style="width: 16rem;" (click)="navDetail(build.buildingId)">

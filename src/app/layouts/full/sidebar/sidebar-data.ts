@@ -18,11 +18,6 @@ export const navItems: NavItem[] = [
     navCap: 'Transaction',
   },
   {
-    displayName: 'Booking List',
-    iconName: 'list-check',
-    route: '/vendor/transaction/booking-list',
-  },
-  {
     displayName: 'Purchase History',
     iconName: 'shopping-cart',
     route: '/vendor/transaction/purchase-history',

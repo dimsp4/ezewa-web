@@ -10,6 +10,9 @@ import {
 } from '@angular/forms';
 import { BuildingService } from '../building.service';
 import { NgIf } from '@angular/common';
+import { BuildingResponse } from '../model/building-response.model';
+import { TransactionService } from '../../transaction/transaction.service';
+import { TransactionResponse } from 'src/app/pages-customer/model/transaction-response.model';
 
 @Component({
   selector: 'app-all',
@@ -21,21 +24,42 @@ export class AllComponent implements OnInit {
     private readonly router: Router,
     private readonly route: ActivatedRoute,
     private readonly dialog: MatDialog,
-    private readonly service: BuildingService
+    private readonly serviceBuilding: BuildingService,
+    private readonly serviceTransaction: TransactionService,
   ) {}
 
   ngOnInit(): void {
-    this.service.getAllBuilding().subscribe({
-      next: res => {
-        this.building = res.data
-      }
+    this.serviceTransaction.getAllTransaction().subscribe(res => {
+      this.transactions = res.data
+      this.serviceBuilding.getAllBuilding().subscribe({
+        next: res => {
+          res.data.forEach(data => {
+            this.building.push({
+              buildingResponse: data,
+              avail: this.getTransaction(data.buildingId),
+            })
+          })
+        }
+      })
     })
   }
 
   isDetail = false;
   buildById: any;
 
-  building: any[] = [];
+  building: BuildingModel[] = [];
+  transactions: TransactionResponse[] = [];
+
+  getTransaction(id: string){
+    let find = this.transactions.find(t => t.orderDetails[0].buildingResponse.buildingId === id)
+    if (find) {
+      console.log(find.orderDetails[0].buildingResponse.buildingName ,find.orderDetails[0].available);
+      
+      return find.orderDetails[0].available
+    } 
+    
+    return true
+  }
 
   openAddBuilding() {
     const dialogRef = this.dialog.open(AddBuildingComponent, {});
@@ -47,7 +71,7 @@ export class AllComponent implements OnInit {
 
   buildingDetailNav(id: string) {
     this.buildById = this.building.find((b) => {
-      b.building.id === id;
+      b.buildingResponse.buildingId === id;
     });
 
     this.isDetail = true;

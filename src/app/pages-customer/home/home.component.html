@@ -9,25 +9,20 @@
       </div>
       <div class="col-2 text-end me-4">
         <button
-          [matMenuTriggerFor]="profilemenu"
+          [matMenuTriggerFor]="menu"
           mat-stroked-button
           style="color: white; border-color: white; font-weight: 600"
           type="button"
           aria-expanded="false"
         >
-          Welcome User
+          <i-tabler name="menu-2"></i-tabler>
         </button>
-        <mat-menu #profilemenu="matMenu" class="topbar-dd cardWithShadow mt-2">
-          <button mat-menu-item>
-            <mat-icon class="d-flex align-items-center"
-            >
-              <i-tabler
-                name="user"
-                class="icon-18 d-flex"
-              ></i-tabler>
-            </mat-icon
-            >
-            My Profile
+        <mat-menu #menu="matMenu" class="topbar-dd cardWithShadow mt-2">
+          <button mat-menu-item [matMenuTriggerFor]="booking">
+            <mat-icon class="d-flex align-items-center">
+              <i-tabler name="shopping-cart" class="icon-18 d-flex"></i-tabler>
+            </mat-icon>
+            My Booking
           </button>
 
           <div class="p-x-12 m-t-12">
@@ -36,9 +31,31 @@
               mat-stroked-button
               color="dark"
               class="w-100"
-            >Logout</a
+              >Logout</a
             >
           </div>
+        </mat-menu>
+
+        <mat-menu #booking="matMenu" class="topbar-dd cardWithShadow">
+          <table class="table m-3 w-100">
+            <thead>
+              <tr>
+                <th scope="col" class="vertical-header">Building</th>
+                <th scope="col">Date</th>
+                <th scope="col">Status</th>
+              </tr>
+            </thead>
+            <tbody *ngIf="transactions">
+              <tr *ngFor="let item of transactions">
+                <td>{{ item.buildingName }}</td>
+                <td>{{ item.dateTrans }}</td>
+                <td>{{ item.status }}</td>
+              </tr>
+            </tbody>
+            <tbody>
+              <p class="text-center">No data</p>
+            </tbody>
+          </table>
         </mat-menu>
       </div>
     </nav>
@@ -51,20 +68,21 @@
           <h1 class="ms-4" style="font-weight: 600; color: black">ezewa</h1>
         </div>
         <div class="col-6" *ngIf="search">
-          <form [formGroup]="formGroup" (ngSubmit)="searchButton(formGroup.value)" class="d-flex" role="search">
+          <form
+            [formGroup]="formGroup"
+            (ngSubmit)="searchButton(formGroup.value)"
+            class="d-flex"
+            role="search"
+          >
             <input
               class="form-control px-3"
               formControlName="input"
               type="search"
               placeholder="Search by name/location/address"
               aria-label="Search"
-              style="font-weight: 600;"
+              style="font-weight: 600"
             />
-            <button
-              mat-icon-button
-              class="ms-2"
-              type="submit"
-            >
+            <button mat-icon-button class="ms-2" type="submit">
               <i-tabler name="search" class="text-dark"></i-tabler>
             </button>
           </form>
@@ -77,22 +95,20 @@
             type="button"
             aria-expanded="false"
           >
-            Welcome User
+            <i-tabler name="menu-2"></i-tabler>
           </button>
           <mat-menu
             #profilemenu="matMenu"
             class="topbar-dd cardWithShadow mt-2"
           >
-            <button mat-menu-item>
-              <mat-icon class="d-flex align-items-center"
-              >
+            <button mat-menu-item [matMenuTriggerFor]="booking">
+              <mat-icon class="d-flex align-items-center">
                 <i-tabler
-                  name="user"
+                  name="shopping-cart"
                   class="icon-18 d-flex"
                 ></i-tabler>
-              </mat-icon
-              >
-              My Profile
+              </mat-icon>
+              My Booking
             </button>
 
             <div class="p-x-12 m-t-12">
@@ -101,9 +117,31 @@
                 mat-stroked-button
                 color="dark"
                 class="w-100"
-              >Logout</a
+                >Logout</a
               >
             </div>
+          </mat-menu>
+
+          <mat-menu #booking="matMenu" class="topbar-dd cardWithShadow">
+            <table class="table m-3 w-100">
+              <thead>
+                <tr>
+                  <th scope="col" class="vertical-header">Building</th>
+                  <th scope="col">Date</th>
+                  <th scope="col">Status</th>
+                </tr>
+              </thead>
+              <tbody *ngIf="transactions">
+                <tr *ngFor="let item of transactions">
+                  <td>{{item.buildingName}}</td>
+                  <td>{{ item.dateTrans}}</td>
+                  <td>{{ item.status}}</td>
+                </tr>
+              </tbody>
+              <tbody>
+              <p class="text-center">No data</p>
+              </tbody>
+            </table>
           </mat-menu>
         </div>
       </nav>
@@ -116,10 +154,15 @@
     ></h1>
     <div class="col-7 ms-3">
       <h4 class="text-start mb-4" style="font-weight: 600; font-size: 2rem">
-        Find your next building to rent <br/>
+        Find your next building to rent <br />
         with amazing price
       </h4>
-      <form [formGroup]="formGroup" (ngSubmit)="searchButton(formGroup.value)" class="d-flex" role="search">
+      <form
+        [formGroup]="formGroup"
+        (ngSubmit)="searchButton(formGroup.value)"
+        class="d-flex"
+        role="search"
+      >
         <input
           class="form-control px-3"
           formControlName="input"
@@ -128,11 +171,7 @@
           aria-label="Search"
           style="font-weight: 600"
         />
-        <button
-          mat-icon-button
-          class="ms-2"
-          type="submit"
-        >
+        <button mat-icon-button class="ms-2" type="submit">
           <i-tabler name="search" class="text-light"></i-tabler>
         </button>
       </form>
@@ -155,11 +194,15 @@
     <div class="wrapper">
       <owl-carousel-o [options]="customOptions">
         <ng-template carouselSlide *ngFor="let images of imagesCarousel">
-            <div class="slide">
-                <img class="rounded" [src]="images" style="width: 100%; height: 320px; object-fit: cover;">
-            </div>
+          <div class="slide">
+            <img
+              class="rounded"
+              [src]="images"
+              style="width: 100%; height: 320px; object-fit: cover"
+            />
+          </div>
         </ng-template>
-    </owl-carousel-o>
+      </owl-carousel-o>
     </div>
   </div>
 </div>
@@ -171,9 +214,16 @@
     <p class="fs-5 mb-4">
       Join as vendor to start renting your own building in our page.
     </p>
-    <button class="btn btn-dark w-100 py-3 mb-4" (click)="openLoginVendor()">Join us</button>
+    <button class="btn btn-dark w-100 py-3 mb-4" (click)="openLoginVendor()">
+      Join us
+    </button>
     <p class="fs-5 mb-4">Have join with us before as a vendor?</p>
-    <button class="btn btn-outline-dark w-100 py-3" (click)="openRegisterVendor()">Login as Vendor</button>
+    <button
+      class="btn btn-outline-dark w-100 py-3"
+      (click)="openRegisterVendor()"
+    >
+      Login as Vendor
+    </button>
   </div>
   <div class="col-5">
     <img

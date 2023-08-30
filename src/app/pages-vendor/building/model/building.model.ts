@@ -1,11 +1,6 @@
+import { BuildingResponse } from "./building-response.model";
+
 export interface BuildingModel {
-  building: {
-    id: string;
-    buildingName: string;
-    description: string
-    location: string
-    price: number
-    vendorId:string
-  };
-  images: string[]
+  buildingResponse: BuildingResponse
+  avail: boolean
 }

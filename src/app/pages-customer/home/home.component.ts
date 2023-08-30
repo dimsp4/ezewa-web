@@ -8,6 +8,13 @@ import { AppSideLoginComponent } from 'src/app/authentication/login/login-vendor
 import { AppSideRegisterComponent } from 'src/app/authentication/register/register-vendor/register.component';
 import { GetStartedComponent } from 'src/app/shared/components/get-started/get-started.component';
 import { LoginGetStartedComponent } from 'src/app/shared/components/login-get-started/login-get-started.component';
+import { PagesCustomerService } from '../pages-customer.service';
+
+interface TransactionCustomer{
+  buildingName: string,
+  dateTrans: string,
+  status: string,
+}
 
 @Component({
   selector: 'app-home',
@@ -18,8 +25,23 @@ export class HomeComponent {
   constructor(
     private readonly router: Router,
     private readonly authS: AuthService,
+    private readonly custS: PagesCustomerService,
     public dialog: MatDialog
   ) {}
+
+  transactions : TransactionCustomer[] = []
+
+  seeTransaction(){
+    this.custS.getAllTransactionByProfile().subscribe(res => {
+      res.data.forEach(val => {
+        this.transactions.push({
+          buildingName: val.orderDetails[0].buildingResponse.buildingName,
+          dateTrans: val.transDate,
+          status: val.orderDetails[0].status
+        })
+      })
+    })
+  }
 
   imagesCarousel = [
     'assets/images/backgrounds/building.jpg',
@@ -102,7 +124,7 @@ export class HomeComponent {
   searchButton(data: any) {
     console.log(data.input);
     if (data.input) {
-      this.router.navigate([`customer/building`], {
+      this.router.navigate([`customer/building/all`], {
         queryParams: { q: data.input },
       });
     } else {

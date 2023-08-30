@@ -88,10 +88,20 @@
         </form>
         <button
           class="col-12 py-3 btn btn-outline-dark"
+          *ngIf="!status; else disable"
           (click)="startTransaction()"
         >
           Book This Building
         </button>
+        <ng-template #disable>
+          <button
+          class="col-12 py-3 btn btn-outline-dark"
+          (click)="startTransaction()"
+          disabled
+        >
+          Book This Building
+        </button>
+        </ng-template>
       </div>
     </div>
     <div *ngIf="status > 0" class="col-12 my-3 p-0">

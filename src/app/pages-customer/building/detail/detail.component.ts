@@ -40,14 +40,6 @@ export class DetailComponent implements OnInit, OnDestroy{
     });
   }
 
-  testDate(){
-    let date = this.datePick.controls['date'].value
-    console.log("Real date: ",date);
-
-    console.log("Format date: ",formatDateStart(new Date(date!)));
-
-  }
-
   detail(id: string) {
     this.service.getBuildingById(id).subscribe((res) => {
       this.building = res.data;

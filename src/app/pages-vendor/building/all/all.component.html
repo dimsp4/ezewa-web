@@ -1,11 +1,11 @@
 <app-detail [building]="building"></app-detail>
 <div class="row justify-content-between mb-2 me-3">
-    <h3 class="col">Your Building</h3>
-    <button
+  <h3 class="col">Your Building</h3>
+  <button
     mat-stroked-button
     color="primary"
     type="button"
-    class="col-2 "
+    class="col-2"
     (click)="openAddBuilding()"
   >
     Add Building
@@ -13,17 +13,26 @@
 </div>
 <div class="container">
   <div class="row">
-    <div class="col-4" *ngFor="let build of building">
-      <div class="card mb-4">
+    <div class="col-4" *ngFor="let build of building; let i = index">
+      <div
+        class="card mb-4"
+        (click)="buildingDetailNav(build.buildingResponse.buildingId)"
+      >
         <img
           class="card-img-top"
-          src="{{ build.images }}"
+          src="{{ build.buildingResponse.buildingImages[0].url }}"
           alt="Card image cap"
         />
         <div class="card-body">
           <p class="card-text">
-            {{ build.building.buildingName }}
+            {{ build.buildingResponse.buildingName }}
           </p>
+          <div *ngIf="!build.avail; else avail">
+            <p class="card-text text-danger text-end">BOOKED</p>
+          </div>
+          <ng-template #avail>
+            <p class="card-text text-success text-end">AVAILABLE</p>
+          </ng-template>
         </div>
       </div>
     </div>

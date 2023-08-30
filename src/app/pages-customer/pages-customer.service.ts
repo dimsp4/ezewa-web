@@ -11,8 +11,15 @@ import { TransactionRequest } from './model/transaction-request.model';
 export class PagesCustomerService {
   constructor(private readonly http: HttpClient) {}
 
-  getAllBuilding() {
+  getAllBuilding(q?: string) {
+    if (q) {
+    return this.http.get<ResponseWrapper<BuildingResponse>>('/api/buildings', {params: {buildingName: q}});
+    }
     return this.http.get<ResponseWrapper<BuildingResponse>>('/api/buildings');
+  }
+
+  getAllTransactionByProfile() {
+    return this.http.get<ResponseWrapper<TransactionResponse>>('/api/transaction/customer');
   }
 
   getBuildingById(id: string) {

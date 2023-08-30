@@ -13,13 +13,15 @@ import { LoadingOverlayComponent } from '../shared/components/loading-overlay/lo
 import { FullComponent } from '../layouts/full/full.component';
 import { TransactionModule } from './transaction/transaction.module';
 import { BuildingComponent } from './building/building.component';
+import { PurchaseHistoryComponent } from './transaction/purchase-history/purchase-history.component';
 
 @NgModule({
   declarations: [
     ProfileComponent,
     LoadingOverlayComponent,
     TransactionComponent,
-    BuildingComponent
+    BuildingComponent,
+    PurchaseHistoryComponent
   ],
   imports: [
     CommonModule,

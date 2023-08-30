@@ -4,11 +4,11 @@
           type="file"
           id="imageInput"
           style="display: none"
-          (change)="onImageChange(buildById.images[0],$event)"
+          (change)="onImageChange(buildById.buildingImages[0],$event)"
         />
         <img
-          *ngIf="buildById.images.length > 0; else addPicture"
-          [src]="buildById.images[0]"
+          *ngIf="buildById.buildingImages.length > 0; else addPicture"
+          [src]="buildById.buildingImages[0].url"
           alt="Building"
           class="rounded mb-3"
           style="width: inherit"

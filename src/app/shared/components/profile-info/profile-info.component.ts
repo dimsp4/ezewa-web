@@ -22,13 +22,13 @@ export class ProfileInfoComponent {
   onImage(name: string) {
     if (name === 'dhimas') {
       this.name = 'Dhimas Pamungkas Setiabudi'
-      this.image = `./assets/images/profile/user-dhimas.png`
-      this.urlGithub = 'https://github.com/'
-      this.urlLinkedin = 'https://www.linkedin.com/'
-      this.urlInstagram = 'https://www.instagram.com/'
+      this.image = `assets/images/profile/dimas.jpg`
+      this.urlGithub = 'https://github.com/dimsp4'
+      this.urlLinkedin = 'https://www.linkedin.com/in/dimsp4'
+      this.urlInstagram = 'https://www.instagram.com/dims.p'
     } else if (name === 'fredy') {
       this.name = 'Fredy Mordechai Marpaung'
-      this.image = `./assets/images/profile/user-fredy.png`
+      this.image = `assets/images/profile/edy.jpeg`
       this.urlGithub = 'https://github.com/'
       this.urlLinkedin = 'https://www.linkedin.com/'
       this.urlInstagram = 'https://www.instagram.com/'

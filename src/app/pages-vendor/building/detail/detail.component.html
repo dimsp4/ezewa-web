@@ -1,26 +1,33 @@
 <div *ngIf="buildById" class="row px-4">
-    <label for="imageInput" class="col-3 btn btn-outline-secondary me-2">
-        <input
-          type="file"
-          id="imageInput"
-          style="display: none"
-          (change)="onImageChange(buildById.buildingImages[0],$event)"
-        />
-        <img
-          *ngIf="buildById.buildingImages.length > 0; else addPicture"
-          [src]="buildById.buildingImages[0].url"
-          alt="Building"
-          class="rounded mb-3"
-          style="width: inherit"
-        />
-        <ng-template #addPicture>
-          <p class="fs-6">Add Picture</p>
-        </ng-template>
-      </label>
+  <label for="imageInput" class="col-3 btn btn-outline-secondary me-2">
+    <input
+      type="file"
+      id="imageInput"
+      style="display: none"
+      (change)="onImageChange($event)"
+    />
+    <img
+      *ngIf="
+        buildById.buildingImages.length > 0 && !imagePreviewUrl;
+        else addPicture
+      "
+      [src]="buildById.buildingImages[0].url"
+      alt="Building"
+      class="rounded mb-3"
+      style="width: inherit"
+    />
+    <ng-template #addPicture>
+      <img
+        [src]="imagePreviewUrl"
+        alt="Selected Image"
+        class="img-fluid mb-3"
+        style="max-width: 100%"
+      />
+    </ng-template>
+  </label>
   <form
     class="col-9 mb-3 row justify-content-between"
     [formGroup]="buildingForm"
-    (ngSubmit)="saveBuilding(buildingForm.value)"
   >
     <input
       formControlName="buildingName"
@@ -47,5 +54,17 @@
       placeholder="Description"
     />
   </form>
-  <button type="submit" class="btn btn-dark mt-3 mb-4">Save</button>
+  <button
+    type="submit"
+    class="btn btn-dark mt-3 mb-4"
+    (click)="updateBuilding(buildingForm.value)"
+    *ngIf="!isLoading; else load"
+  >
+    Save
+  </button>
+  <ng-template #load>
+    <button type="submit" class="btn btn-dark mt-3 mb-4" disabled>
+      <p class="m-auto spinner-border"></p>
+    </button>
+  </ng-template>
 </div>

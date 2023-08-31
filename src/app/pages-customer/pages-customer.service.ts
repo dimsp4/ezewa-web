@@ -19,7 +19,7 @@ export class PagesCustomerService {
   }
 
   getAllTransactionByProfile() {
-    return this.http.get<ResponseWrapper<TransactionResponse>>('/api/transaction/customer');
+    return this.http.get<ResponseWrapper<TransactionResponse>>('/api/transactions/customer');
   }
 
   getBuildingById(id: string) {

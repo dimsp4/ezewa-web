@@ -20,9 +20,15 @@
       >
         <img
           class="card-img-top"
+          *ngIf="build.buildingResponse.buildingImages[0].url; else noimage"
           src="{{ build.buildingResponse.buildingImages[0].url }}"
           alt="Card image cap"
         />
+        <ng-template #noimage>
+          <div class="card-img-top m-auto">
+            <p class="fs-5">No Image</p>
+          </div>
+        </ng-template>
         <div class="card-body">
           <p class="card-text">
             {{ build.buildingResponse.buildingName }}

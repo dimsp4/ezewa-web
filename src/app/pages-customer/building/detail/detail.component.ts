@@ -42,6 +42,8 @@ export class DetailComponent implements OnInit, OnDestroy{
 
   detail(id: string) {
     this.service.getBuildingById(id).subscribe((res) => {
+      console.log(res);
+      
       this.building = res.data;
     });
   }

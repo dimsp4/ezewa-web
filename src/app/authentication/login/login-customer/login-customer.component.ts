@@ -18,6 +18,9 @@ export class LoginCustomerComponent {
     private readonly matDialog: MatDialog
   ) {}
 
+  isLoading = false;
+
+
   loginForm: FormGroup = new FormGroup({
     email: new FormControl(''),
     password: new FormControl(''),
@@ -30,6 +33,7 @@ export class LoginCustomerComponent {
   }
 
   tryAuth(data: UserRequest) {
+    this.isLoading = true
     this.service.login(data).subscribe({
       next: (res) => {
         let token = res.data.token;
@@ -45,9 +49,13 @@ export class LoginCustomerComponent {
         }
       },
       error: (err) => {
-        Swal.fire('Invalid Username or Password');
+        alert('Invalid Email or Password')
+        this.isLoading = false;
       },
+      complete: () => {
+        this.isLoading = false;
+        this.matDialog.closeAll();
+      }
     });
-    this.matDialog.closeAll()
   }
 }

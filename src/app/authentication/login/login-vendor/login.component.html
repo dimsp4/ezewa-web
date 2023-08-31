@@ -21,10 +21,20 @@
         mat-flat-button
         color="primary"
         class="w-100"
+        *ngIf="!isLoading"
         (click)="tryAuth(loginForm.value)"
       >
-        Login as Vendor
+        Login as Customer
       </a>
+      <button
+        mat-flat-button
+        color="primary"
+        class="w-100"
+        *ngIf="isLoading"
+        disabled
+      >
+        <p *ngIf="isLoading" class="m-auto spinner-border"></p>
+      </button>
       <!-- input -->
     </form>
     <span class="d-block f-w-500 text-center m-t-24"

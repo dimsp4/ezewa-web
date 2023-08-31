@@ -1,4 +1,4 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
@@ -21,13 +21,17 @@ interface TransactionCustomer{
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
   constructor(
     private readonly router: Router,
     private readonly authS: AuthService,
     private readonly custS: PagesCustomerService,
     public dialog: MatDialog
   ) {}
+
+  ngOnInit(): void {
+    this.seeTransaction()
+  }
 
   transactions : TransactionCustomer[] = []
 
@@ -45,11 +49,13 @@ export class HomeComponent {
 
   imagesCarousel = [
     'assets/images/backgrounds/building.jpg',
+    'assets/images/backgrounds/china-city-river-business-view.jpg',
     'assets/images/backgrounds/landing.jpg',
-    'assets/images/backgrounds/customer-bg.jpg',
+    'assets/images/backgrounds/landmarks-hong-kong.jpg',
     'assets/images/backgrounds/building.jpg',
+    'assets/images/backgrounds/china-city-river-business-view.jpg',
     'assets/images/backgrounds/landing.jpg',
-    'assets/images/backgrounds/customer-bg.jpg',
+    'assets/images/backgrounds/landmarks-hong-kong.jpg',
   ];
 
   customOptions: OwlOptions = {

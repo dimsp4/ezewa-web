@@ -131,16 +131,18 @@
                   <th scope="col">Status</th>
                 </tr>
               </thead>
-              <tbody *ngIf="transactions">
+              <tbody *ngIf="transactions; else nodata">
                 <tr *ngFor="let item of transactions">
                   <td>{{item.buildingName}}</td>
                   <td>{{ item.dateTrans}}</td>
                   <td>{{ item.status}}</td>
                 </tr>
               </tbody>
-              <tbody>
-              <p class="text-center">No data</p>
-              </tbody>
+              <ng-template #nodata>
+                <tbody>
+                  <p class="text-center">No data</p>
+                  </tbody>
+              </ng-template>
             </table>
           </mat-menu>
         </div>
@@ -214,13 +216,13 @@
     <p class="fs-5 mb-4">
       Join as vendor to start renting your own building in our page.
     </p>
-    <button class="btn btn-dark w-100 py-3 mb-4" (click)="openLoginVendor()">
+    <button class="btn btn-dark w-100 py-3 mb-4" (click)="openRegisterVendor()">
       Join us
     </button>
     <p class="fs-5 mb-4">Have join with us before as a vendor?</p>
     <button
       class="btn btn-outline-dark w-100 py-3"
-      (click)="openRegisterVendor()"
+      (click)="openLoginVendor()"
     >
       Login as Vendor
     </button>

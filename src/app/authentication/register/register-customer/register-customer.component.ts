@@ -20,6 +20,7 @@ export class RegisterCustomerComponent {
   
   @Output() page = new EventEmitter<number>()
 
+  isLoading = false
 
   form: FormGroup = new FormGroup({
     email: new FormControl('', [Validators.required]),
@@ -31,6 +32,7 @@ export class RegisterCustomerComponent {
   }
 
   submit(data: UserRequest) {
+    this.isLoading = true
     this.service.registerCustomer(data).subscribe({
       next: (res) => {
         this.service.login(data).subscribe({
@@ -45,15 +47,18 @@ export class RegisterCustomerComponent {
             }
           },
           error: (err) => {
-            Swal.fire('Invalid Email or Password');
           },
         });
       },
       error: (err) => {
-        Swal.fire('Invalid Email or Password');
+        this.isLoading = false
+        alert(err.message)
       },
+      complete: () => {
+        this.isLoading = false
+        this.matDialog.closeAll()
+      }
     });
-    this.matDialog.closeAll()
   }
 
   changeVendor(){

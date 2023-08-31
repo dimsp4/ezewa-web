@@ -28,7 +28,7 @@ export class BuildingInterceptorInterceptor implements HttpInterceptor {
         headers: modifiedHeaders,
       });
 
-      return next.handle(modifiedReq);
+      // return next.handle(modifiedReq);
     }
 
     // Jika bukan FormData, biarkan permintaan tetap seperti aslinya

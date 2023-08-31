@@ -17,6 +17,8 @@ export class AppSideLoginComponent {
     private readonly matDialog: MatDialog
   ) {}
 
+  isLoading = false;
+
   loginForm: FormGroup = new FormGroup({
     email: new FormControl(''),
     password: new FormControl(''),
@@ -29,10 +31,11 @@ export class AppSideLoginComponent {
   }
 
   tryAuth(data: UserRequest) {
+    this.isLoading = true;
     this.service.login(data).subscribe({
       next: (res) => {
         console.log(res);
-        
+
         let token = res.data.token;
 
         if (token) {
@@ -46,10 +49,14 @@ export class AppSideLoginComponent {
         }
       },
       error: (err) => {
-        Swal.fire('Invalid Username or Password');
+        this.isLoading = false;
+        alert('Invalid Username or Password');
+      },
+      complete: () => {
+        this.isLoading = false;
+        this.matDialog.closeAll();
       },
     });
-    this.matDialog.closeAll()
   }
 
   moveToRegister() {

@@ -19,6 +19,10 @@ export class ProfileInfoComponent {
     this.onImage(this.inputName)
   }
 
+  openUrl(url: string){
+    window.open(url)
+  }
+
   onImage(name: string) {
     if (name === 'dhimas') {
       this.name = 'Dhimas Pamungkas Setiabudi'
@@ -29,9 +33,9 @@ export class ProfileInfoComponent {
     } else if (name === 'fredy') {
       this.name = 'Fredy Mordechai Marpaung'
       this.image = `assets/images/profile/edy.jpeg`
-      this.urlGithub = 'https://github.com/'
-      this.urlLinkedin = 'https://www.linkedin.com/'
-      this.urlInstagram = 'https://www.instagram.com/'
+      this.urlGithub = 'https://gitlab.com/FredyMM'
+      this.urlLinkedin = 'https://www.linkedin.com/in/fredy-m-marpaung-68b89a194/'
+      this.urlInstagram = 'https://www.instagram.com/marpaung_fredy'
     } else if (name === 'ibnu') {
       this.name = 'Muhammad Ibnu Al Yazzar'
       this.image = `./assets/images/profile/user-ibnu.jpg`
@@ -40,7 +44,7 @@ export class ProfileInfoComponent {
       this.urlInstagram = 'https://www.instagram.com/ibnu.al.yazzar/'
     } else if (name === 'hafidz') {
       this.name = 'Vhierdy Hafidz'
-      this.image = `./assets/images/profile/user-hafidz.png`
+      this.image = `./assets/images/profile/apis.jpg`
       this.urlGithub = 'https://github.com/vhihafiz'
       this.urlLinkedin = 'https://www.linkedin.com/in/vhierdy-hafidz-b12982232/'
       this.urlInstagram = 'https://www.instagram.com/vhrdyhfdz/'

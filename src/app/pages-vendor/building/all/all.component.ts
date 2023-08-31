@@ -13,6 +13,7 @@ import { NgIf } from '@angular/common';
 import { BuildingResponse } from '../model/building-response.model';
 import { TransactionService } from '../../transaction/transaction.service';
 import { TransactionResponse } from 'src/app/pages-customer/model/transaction-response.model';
+import { BuildingRequest } from '../model/building-request.model';
 
 @Component({
   selector: 'app-all',
@@ -25,23 +26,27 @@ export class AllComponent implements OnInit {
     private readonly route: ActivatedRoute,
     private readonly dialog: MatDialog,
     private readonly serviceBuilding: BuildingService,
-    private readonly serviceTransaction: TransactionService,
+    private readonly serviceTransaction: TransactionService
   ) {}
 
   ngOnInit(): void {
-    this.serviceTransaction.getAllTransaction().subscribe(res => {
-      this.transactions = res.data
+    this.getAll();
+  }
+
+  getAll() {
+    this.serviceTransaction.getAllTransaction().subscribe((res) => {
+      this.transactions = res.data;
       this.serviceBuilding.getAllBuilding().subscribe({
-        next: res => {
-          res.data.forEach(data => {
+        next: (res) => {
+          res.data.forEach((data) => {
             this.building.push({
               buildingResponse: data,
               avail: this.getTransaction(data.buildingId),
-            })
-          })
-        }
-      })
-    })
+            });
+          });
+        },
+      });
+    });
   }
 
   isDetail = false;
@@ -50,22 +55,27 @@ export class AllComponent implements OnInit {
   building: BuildingModel[] = [];
   transactions: TransactionResponse[] = [];
 
-  getTransaction(id: string){
-    let find = this.transactions.find(t => t.orderDetails[0].buildingResponse.buildingId === id)
+  getTransaction(id: string) {
+    let find = this.transactions.find(
+      (t) => t.orderDetails[0].buildingResponse.buildingId === id
+    );
     if (find) {
-      console.log(find.orderDetails[0].buildingResponse.buildingName ,find.orderDetails[0].available);
-      
-      return find.orderDetails[0].available
-    } 
-    
-    return true
+      console.log(
+        find.orderDetails[0].buildingResponse.buildingName,
+        find.orderDetails[0].available
+      );
+
+      return find.orderDetails[0].available;
+    }
+
+    return true;
   }
 
   openAddBuilding() {
     const dialogRef = this.dialog.open(AddBuildingComponent, {});
 
     dialogRef.afterClosed().subscribe((result) => {
-      console.log(`Dialog result: ${result}`);
+      this.getAll();
     });
   }
 
@@ -136,9 +146,15 @@ export class AllComponent implements OnInit {
           type="submit"
           class="btn btn-dark mt-3 mb-4"
           (click)="saveBuilding(buildingForm.value)"
+          *ngIf="!isLoading; else load"
         >
           Save
         </button>
+        <ng-template #load>
+          <button type="submit" class="btn btn-dark mt-3 mb-4" disabled>
+            <p class="m-auto spinner-border"></p>
+          </button>
+        </ng-template>
       </div>
     </div>
   `,
@@ -146,7 +162,10 @@ export class AllComponent implements OnInit {
   imports: [MatDialogModule, FormsModule, ReactiveFormsModule, NgIf],
 })
 export class AddBuildingComponent {
-  constructor(private readonly service: BuildingService) {}
+  constructor(
+    private readonly service: BuildingService,
+    public matDialog: MatDialog
+  ) {}
 
   buildingForm: FormGroup = new FormGroup({
     buildingName: new FormControl(''),
@@ -155,6 +174,8 @@ export class AddBuildingComponent {
     price: new FormControl(''),
   });
 
+  isLoading = false;
+
   selectedImage: File | undefined;
   imagePreviewUrl: string | undefined;
 
@@ -162,28 +183,37 @@ export class AddBuildingComponent {
     this.selectedImage = event.target.files[0];
     if (this.selectedImage) {
       this.imagePreviewUrl = URL.createObjectURL(this.selectedImage);
+      console.log(this.imagePreviewUrl);
+      
     }
   }
 
   saveBuilding(data: any) {
-    console.log('save');
-  
-    const buildingData = {
-      buildingName: data.buildingName,
-      description: data.description,
-      location: data.location,
-      price: data.price,
-      vendorId: sessionStorage.getItem('id')
-    };
-  
-    this.service.addBuilding(buildingData, [this.selectedImage!]).subscribe(
-      (res) => {
-        console.log(res);
+    this.isLoading = true;
+
+    const buildingData: BuildingRequest = {
+      building: {
+        buildingName: data.buildingName,
+        description: data.description,
+        location: data.location,
+        price: Number.parseInt(data.price),
+        vendorId: sessionStorage.getItem('id')!,
       },
-      (err) => {
-        console.log(err);
-      }
-    );
+      images: [],
+    };
+
+    buildingData.images.push(this.selectedImage!);
+
+    this.service.addBuilding(buildingData).subscribe({
+      next: (res) => {
+        this.isLoading = false;
+        this.matDialog.closeAll();
+        alert('Upload Success');
+      },
+      error: (err) => {
+        this.isLoading = false;
+        alert('Image must under 4mb.');
+      },
+    });
   }
-  
 }

@@ -41,7 +41,7 @@ export class PurchaseHistoryComponent {
     } else if (status === 'PENDING') {
       return 'text-warning';
     } else {
-      return 'text-primary';
+      return 'text-danger';
     }
   }
   

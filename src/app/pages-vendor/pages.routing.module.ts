@@ -7,12 +7,8 @@ import { BuildingComponent } from './building/building.component';
 export const PagesRoutes: Routes = [
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'profile',
     pathMatch: 'full',
-  },
-  {
-    path: 'home',
-    component: HomeComponent,
   },
   {
     path: 'building',

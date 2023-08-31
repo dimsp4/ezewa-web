@@ -6,6 +6,18 @@ export interface BuildingRequest {
       price: number
       vendorId:string
     };
-    images: string[]
+    images: File[]
+  }
+
+  export interface BuildingUpdateRequest {
+    building: {
+      buildingId: string
+      buildingName: string;
+      description: string
+      location: string
+      price: number
+      vendorId:string
+    };
+    images: File[]
   }
   

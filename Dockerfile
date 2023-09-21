@@ -1,33 +1,12 @@
+FROM node:10-alpine as build-stage
+WORKDIR /app
+COPY package*.json /app/
+RUN npm install
+COPY ./ /app/
+ARG configuration=production
+RUN npm run build --output-path=./dist/out --configuration $configuration
 
-# FROM node:16 as build
+FROM nginx:1.15
+COPY --from=build-stage /app/dist/out/ /usr/share/nginx/html
 
-# WORKDIR /app
-
-# COPY package*.json ./
-
-# RUN npm install
-
-# COPY . .
-
-# RUN npm run build --prod
-
-# FROM nginx:alpine
-
-# COPY /dist/first-app /usr/share/nginx/html
-
-# EXPOSE 80
-
-# CMD ["nginx", "-g", "daemon off;"]
-
-
-FROM nginx:alpine
-
-WORKDIR /usr/share/nginx/html
-
-WORKDIR /etc/nginx/conf.d
-
-COPY ./nginx/default.conf .
-
-COPY /dist/first-app /usr/share/nginx/html
-
-EXPOSE 80
+COPY ./nginx.conf /etc/nginx/conf.d/default.conf

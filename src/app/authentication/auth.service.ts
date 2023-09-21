@@ -13,8 +13,6 @@ export class AuthService {
   constructor(private readonly http: HttpClient, private readonly router: Router) { }
 
   public login(data: UserRequest): Observable<any>{
-    console.log(data);
-    
     return this.http.post<UserResponseWrapper>('/api/auth/login', data)
   }
 

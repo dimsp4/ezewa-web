@@ -25,17 +25,17 @@ export class ProfileInfoComponent {
 
   onImage(name: string) {
     if (name === 'dhimas') {
-      this.name = 'Dhimas Pamungkas Setiabudi'
-      this.image = `assets/images/profile/dimas.jpg`
+      this.name = 'Dhimas Pamungkas'
+      this.image = `./assets/images/profile/dimas.jpg`
       this.urlGithub = 'https://github.com/dimsp4'
       this.urlLinkedin = 'https://www.linkedin.com/in/dimsp4'
       this.urlInstagram = 'https://www.instagram.com/dims.p'
-    } else if (name === 'fredy') {
-      this.name = 'Fredy Mordechai Marpaung'
-      this.image = `assets/images/profile/edy.jpeg`
-      this.urlGithub = 'https://gitlab.com/FredyMM'
-      this.urlLinkedin = 'https://www.linkedin.com/in/fredy-m-marpaung-68b89a194/'
-      this.urlInstagram = 'https://www.instagram.com/marpaung_fredy'
+    } else if (name === 'rudy') {
+      this.name = 'Rudy Nurafif'
+      this.image = `./assets/images/profile/rudy.jpeg`
+      this.urlGithub = 'https://github.com/rudynurafif'
+      this.urlLinkedin = 'https://www.linkedin.com/in/rudynurafif/'
+      this.urlInstagram = 'https://www.instagram.com/rudynurafif'
     } else if (name === 'ibnu') {
       this.name = 'Muhammad Ibnu Al Yazzar'
       this.image = `./assets/images/profile/user-ibnu.jpg`

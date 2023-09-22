@@ -98,7 +98,7 @@ export class HomeComponent implements OnInit {
   search = false;
 
   dhimas = 'dhimas';
-  fredy = 'fredy';
+  rudy = 'rudy';
   ibnu = 'ibnu';
   hafidz = 'hafidz';
 

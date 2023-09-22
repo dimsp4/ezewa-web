@@ -1,6 +1,6 @@
 {
     "/api": {
-      "target": "https://0f9e-103-78-25-190.ngrok-free.app",
+      "target": "http://157.230.249.254:8080",
       "secure": true,
       "changeOrigin": true
     }

@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
-import Swal from 'sweetalert2';
 import { AuthService } from '../../auth.service';
 import { UserRequest } from '../../model/user-request.model';
 import { MatDialog } from '@angular/material/dialog';

@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import Swal from 'sweetalert2';
 import { AuthService } from '../../auth.service';
 import { UserRequest } from '../../model/user-request.model';
 import { MatDialog } from '@angular/material/dialog';
@@ -43,12 +42,12 @@ export class AppSideRegisterComponent {
             }
           },
           error: (err) => {
-            Swal.fire('Invalid Email or Password');
+            alert('Invalid Email or Password');
           },
         });
       },
       error: (err) => {
-        Swal.fire('Invalid Email or Password');
+        alert('Invalid Email or Password');
       },
     });
     this.matDialog.closeAll()
